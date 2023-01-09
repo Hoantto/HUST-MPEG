@@ -16,7 +16,7 @@
 * ***步骤***
     > (1) 在本地（推荐）完成实验环境的部署.
 
-    > (2) 修改**img = Image.open("../ffmpeg-2022-12-11/bin/"+prefix+"."+suffix).convert('RGB')**中的文件路径到指定路径.
+    > (2) 修改此行代码```img = Image.open("../ffmpeg-2022-12-11/bin/"+prefix+"."+suffix).convert('RGB')```中的文件路径到指定路径.
 
     > (3) 编译并运行 **.\mpeg.py** 文件，必要添加代码观察中间结果.
 
