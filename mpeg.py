@@ -36,7 +36,7 @@ def zigzag(data):
     (row, col) = data.shape
     if(row != col):
         raise("row is not equal to col!")
-    zigzag_matrix = torch.zeros((1, row*col))
+    zigzag_matrix = torch.zeros((1, row*col),dtype=torch.int64)
     p = 0
     for index in range(2 * row):
         if(index <= row - 1):
@@ -101,9 +101,11 @@ def mpeg_main_process():
     Qt_DCT_split_tensor_Y = Qt_DCT_split_tensor_Y.unsqueeze(1)
     Qt_DCT_split_tensor_UV = DCT_split_tensor[:, 1:, :, :] / torch.tensor(mm.Chroma_Quantization_Matrix).unsqueeze(0).reshape(-1, MN, MN)
     Qt_DCT_split_tensor = torch.cat((Qt_DCT_split_tensor_Y,Qt_DCT_split_tensor_UV),1)
+    Qt_DCT_split_tensor = Qt_DCT_split_tensor.type(torch.int64)
     #print(Qt_DCT_split_tensor_Y.shape)
     #print(Qt_DCT_split_tensor_UV.shape)
     #print(Qt_DCT_split_tensor.shape)
+    #print(Qt_DCT_split_tensor[0][0])
     
     #将编码后的系数按照z字形编码排列
     z_list = []
@@ -114,7 +116,7 @@ def mpeg_main_process():
     
     z_tensor  = torch.tensor(z_list).unsqueeze(0).reshape(-1, 3, MN*MN)
     #print(z_tensor.shape)
-        
+    #print(z_tensor[0][0])
      
     
 if __name__ == '__main__':
